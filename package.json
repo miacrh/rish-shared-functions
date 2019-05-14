@@ -1,0 +1,24 @@
+{
+  "name": "rish-shared-functions",
+  "version": "1.0.0",
+  "description": "Общие функции для РИШ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foi/rish-shared-functions.git"
+  },
+  "author": "foi",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/foi/rish-shared-functions/issues"
+  },
+  "homepage": "https://github.com/foi/rish-shared-functions#readme",
+  "dependencies": {
+    "json-socket": "github:foi/node-json-socket",
+    "moment": "^2.24.0",
+    "xml2js": "^0.4.19"
+  }
+}
