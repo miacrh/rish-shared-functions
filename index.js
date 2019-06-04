@@ -15,7 +15,7 @@ const sendToMariadbProxy = async (message) => {
 
 const sendToParser = async (message) => {
   return JsonSocket.sendReceive({
-    host: 'mdb-parser',
+    host: 'rish-mdb-parser',
     port: process.env.RISH_MDB_PARSER_PORT,
     delimeter: process.env.JSON_SOCKET_DELIMETER,
     message: message
@@ -196,4 +196,3 @@ module.exports.sendNotification = sendNotification
 module.exports.sendNotificationToDispObservationErrors = sendNotificationToDispObservationErrors
 module.exports.logErrorInService = logErrorInService
 module.exports.getHash = getHash
-
