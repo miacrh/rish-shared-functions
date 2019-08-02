@@ -175,7 +175,7 @@ const logErrorInService = async (error, opts, SERVICE_NAME) => {
   }
 }
 // { type: 'event|error|stats', text: 'текст', SEEVICE_NAME: 'имя_сервиса'}
-const logAndSendToTgChannel = async (opts) {
+const logAndSendToTgChannel = async (opts) => {
   try {
     const _message = `${opts.SERVICE_NAME}: ${opts.type === 'error' ? 'ошибка': ''} ${opts.text}`
     if (opts.type === 'error') {
