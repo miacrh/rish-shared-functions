@@ -174,6 +174,31 @@ const logErrorInService = async (error, opts, SERVICE_NAME) => {
     console.error(e)
   }
 }
+// { type: 'event|error|stats', text: 'текст', SEEVICE_NAME: 'имя_сервиса'}
+const logAndSendToTgChannel = async (opts) {
+  try {
+    const _message = `${opts.SERVICE_NAME}: ${opts.type === 'error' ? 'ошибка': ''} ${opts.text}`
+    if (opts.type === 'error') {
+      console.error(_message)
+    }
+    else {
+      console.log(_message)
+    }
+    await JsonSocket.sendReceive({
+      host: 'rish-notifications',
+      port: process.env.RISH_NOTIFICATIONS_PORT,
+      delimeter: process.env.JSON_SOCKET_DELIMETER,
+      message: {
+        type: opts.type,
+        data: {
+          text: _message
+        }
+      }
+    })
+  } catch (e) {
+    console.error(`${SERVICE_NAME}: ошибка при отправке уведомления ${e}.`)
+  }
+}
 
 const getHash = (string) => crypto.createHash('sha256').update(string, 'utf8').digest('hex')
 
@@ -196,3 +221,4 @@ module.exports.sendNotification = sendNotification
 module.exports.sendNotificationToDispObservationErrors = sendNotificationToDispObservationErrors
 module.exports.logErrorInService = logErrorInService
 module.exports.getHash = getHash
+module.exports.logAndSendToTgChannel = logAndSendToTgChannel
