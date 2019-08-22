@@ -145,7 +145,7 @@ const publishToQ = (_con, queue, message, callback) => {
     return con.createConfirmChannel()
     .then((ch) => {
       return ch.assertQueue(queue).then(_ok => {
-        return ch.sendToQueue(queue, Buffer.from(message), {}, (err, ok) => {
+        return ch.sendToQueue(queue, Buffer.from(message), {persistent: true}, (err, ok) => {
           callback(err, ok)
         })
       })
