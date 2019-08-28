@@ -146,6 +146,7 @@ const publishToQ = (_con, queue, message, callback) => {
     .then((ch) => {
       return ch.assertQueue(queue).then(_ok => {
         return ch.sendToQueue(queue, Buffer.from(message), {persistent: true}, (err, ok) => {
+	  ch.close()
           callback(err, ok)
         })
       })
